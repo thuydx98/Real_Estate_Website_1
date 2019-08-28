@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8" />
+    <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
+    <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
+</head>
+<body>
+<header th:replace="layout :: site-header" />
+<div class="breadcome-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <div class="breadcome-heading">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                                            <form class="form-inline pull-right"
+                                                  th:action="@{/employee/search}" method="GET" style="padding-right: 38%">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="name"
+                                                           placeholder="Search by name"/>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Search</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a href="#">Home</a><span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">All Employee</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Static Table Start -->
+<div class="static-table-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="padding-bottom: 30px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline8-list">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>All employees</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="static-table-list" id="customerindex">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>FullName</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>PhoneNumber</th>
+                                    <th>IDNumber</th>
+                                    <th>Username</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="p : ${lstemp}">
+                                    <td th:text="${p.fullname}"></td>
+                                    <td th:text="${p.address}"></td>
+                                    <td th:text="${p.email}"></td>
+                                    <td th:text="${p.phoneNumber}"></td>
+                                    <td th:text="${p.idNumber}"></td>
+                                    <td th:text="${p.account.userName}"></td>
+                                    <td><a th:href="@{'/employee/edit/'+${p.employee_ID}}">Edit</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Static Table End -->
+<!-- Details Post -->
+<div id="PrimaryModalalert" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+    <div class="modal-dialog">
+        <div id="modal-content" class="modal-content"> </div>
+    </div>
+</div>
+<div id="PrimaryModalalert1" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+    <div class="modal-dialog">
+        <div id="modal-content1" class="modal-content"> </div>
+    </div>
+</div>
+<footer th:replace="layout :: site-footer" />
+<script>
+    var type = '@ViewBag.SaveOK';
+    if (type !== null &amp;&amp; type !== "") {
+        Lobibox.notify('success', {
+            msg: 'Edit customer successfull'
+        });
+    }
+
+    var typeOfSearch = '@ViewBag.TypeOfSearch';
+    $(function () {
+        if (typeOfSearch !== null &amp;&amp; typeOfSearch !== "") {
+            $("#typeOfSearch").val(typeOfSearch);
+        }
+    });
+
+
+    var editURL = '/Censor/Customer/EditPartialView';
+    $(document).on('click', '.btnedit', function () {
+        var $buttonClicked = $(this);
+        var id = $buttonClicked.attr('data-id');
+        $.ajax({
+            type: "GET",
+            url: editURL,
+            contentType: "application/html; charset=utf-8",
+            data: { "customer_id": id },
+            datatype: "html",
+            success: function (data) {
+                $('#modal-content').html(data);
+                $('#PrimaryModalalert').modal('show');
+            },
+            error: function () {
+                alert("Error: Get details of this Post failed. Please try again!");
+            }
+        });
+    });
+
+    var blockURL = '/Censor/Customer/BlockCustomer';
+    $(document).on('click', '.btnblock', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Block this Customer ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: blockURL,
+                contentType: "application/html; charset=utf-8",
+                data: { "customer_id": id },
+                datatype: "html",
+                success: function (data) {
+                    if (data == "1") {
+                        $('#PrimaryModalalert1').modal('hide');
+                        $("#customerindex").load(location.href + " #customerindex>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Block CUSTOMER successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Block CUSTOMER failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'Block CUSTOMER failed! Please try again.'
+                    });
+                }
+            });
+        }
+    });
+
+    var unBlockURL = '/Censor/Customer/UnBlockCustomer';
+    $(document).on('click', '.btnUnBlock', function () {
+        var $buttonClicked = $(this);
+        if (confirm("UnBlock this Customer ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: unBlockURL,
+                contentType: "application/html; charset=utf-8",
+                data: { "customer_id": id },
+                datatype: "html",
+                success: function (data) {
+                    if (data == "1") {
+                        $('#PrimaryModalalert1').modal('hide');
+                        $("#customerindex").load(location.href + " #customerindex>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'UnBlock CUSTOMER successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'UnBlock CUSTOMER failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'UnBlock CUSTOMER failed! Please try again.'
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

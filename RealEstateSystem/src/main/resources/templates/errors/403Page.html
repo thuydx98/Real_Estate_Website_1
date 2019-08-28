@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title th:include=":: #pageTitle">Access denied | Real Estate System</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<div class="error-pagewrap">
+    <div class="error-page-int">
+        <div class="content-error">
+            <h1>ERROR <span class="counter"> 403</span></h1>
+            <p th:if="${message != null}" th:utext="${message}"></p>
+            <a href="index" th:href="@{/}">Dashboard</a>
+        </div>
+        <div class="text-center login-footer">
+            <p>Copyright © 2018. All rights reserved</p>
+        </div>
+    </div>
+</div>
+
+<!-- jquery
+    ============================================ -->
+<script src="../static/js/vendor/jquery-1.12.4.min.js" th:src="@{/js/vendor/jquery-1.12.4.min.js}"></script>
+<!-- counterup JS
+    ============================================ -->
+<script src="../static/js/counterup/jquery.counterup.min.js" th:src="@{/js/counterup/jquery.counterup.min.js}"></script>
+<script src="../static/js/counterup/waypoints.min.js" th:src="@{/js/counterup/waypoints.min.js}"></script>
+<script src="../static/js/counterup/counterup-active.js" th:src="@{/js/counterup/counterup-active.js}"></script>
+
+</body>
+
+</html>

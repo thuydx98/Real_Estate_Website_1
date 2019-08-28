@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8"/>
+    <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
+    <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
+    <link href="/static/css/slideshow.css" rel="stylesheet" th:href="@{/css/slideshow.css}"/>
+    <!--<script-->
+    <!--src="https://code.jquery.com/jquery-3.3.1.js"-->
+    <!--integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="-->
+    <!--crossorigin="anonymous"></script>-->
+</head>
+<body>
+<header th:replace="layout :: site-header"/>
+<div class="breadcome-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            <div class="breadcome-heading">
+                                <form th:action="@{/searchPosts}" method="GET">
+                                    <div class="row">
+                                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-3" style="padding-bottom: 10px">
+                                            <select id="typeOfPost" name="typeOfPost" class="form-control"
+                                                    style="width: 100%">
+                                                <option value="0">Chọn tất cả</option>
+                                                <option value="1">Cần Mua</option>
+                                                <option value="2">Cần Bán</option>
+                                                <option value="3">Cần Thuê</option>
+                                                <option value="4">Cần Cho Thuê</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-3">
+                                            <select id="typeOfRE" name="typeOfRE" class="form-control"
+                                                    style="width: 100%">
+                                                <option value="0">Chọn tất cả</option>
+                                                <option value="1">Nhà</option>
+                                                <option value="2">Đất</option>
+                                                <option value="3">Căn Hộ</option>
+                                                <option value="4">Mặt Bằng</option>
+                                                <option value="5">Kho Xưởng</option>
+                                                <option value="10">Khác</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-4">
+                                            <input name="dateInput" id="dateInput" type="date" class="form-control" value=""
+                                                   style="width:100%"/>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+                                            <div role="search" class="sr-input-func" style="width: 100%">
+                                                <button type="submit"
+                                                        class="btn btn-custon-rounded-three btn-primary btn-md"
+                                                        style="width: 100%">Search
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a href="index.html">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">All Posts</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Static Table Start -->
+<div class="static-table-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="padding-bottom: 30px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline8-list">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>New Posts Table</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="static-table-list" id="newPostTable">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tittle</th>
+                                    <th>Poster</th>
+                                    <th>Post Time</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <span th:each="p : ${lstPost}">
+                                <tr>
+                                    <td th:text="${p.post_ID}"></td>
+                                    <td th:text="${p.title}"></td>
+                                    <td th:text="${p.author.fullname}"></td>
+                                    <td th:text="${p.postTime}"></td>
+                                    <td th:text="${p.postType.type_Tittle} + ' ' + ${p.realEstaleType.realestate_Title}"></td>
+                                    <td th:text="${p.price}"></td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-primary btn-xs btnedit"
+                                                data-toggle="modal"
+                                                th:attr="data-target='#postModel'+${p.post_ID}">Details</button>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-danger btn-xs btnblock"
+                                                th:attr="data-id=${p.post_ID}">Block
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </span>
+                                </tbody>
+                            </table>
+                            <span th:each="p : ${lstPost}">
+                                    <div th:attr="id='postModel'+${p.post_ID}"
+                                         class="PrimaryModalalert modal modal-edu-general default-popup-PrimaryModal fade"
+                                         role="dialog">
+                                        <div class="modal-dialog">
+                                            <div id="modal-content" class="modal-content">
+                                                <div class="modal-close-area modal-close-df">
+                                                    <a class="close" data-dismiss="modal" href="#"><i
+                                                            class="fa fa-close"></i></a>
+                                                </div>
+                                                <!--<p th:text="${p.post_ID}">post_id</p>-->
+                                                <!--<div class="slideshow-container">-->
+
+                                                        <!--<div class="mySlides1">-->
+                                                            <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                                 <!--th:src="@{/img_posts/1.1.jpg}" alt=""/>-->
+                                                            <!--&lt;!&ndash;<span th:each="img : ${p.postImages}">&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<img src="../static/img_posts/1.1.jpg"&ndash;&gt;-->
+                                                                 <!--&lt;!&ndash;th:src="@{/img_posts/1.1.jpg}" alt=""/>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                                        <!--</div>-->
+                                                    <!--<div class="mySlides1">-->
+                                                            <!--<img src="../static/img_posts/1.1.jpg"-->
+                                                                 <!--th:src="@{/img_posts/1.2.jpg}" alt=""/>-->
+                                                        <!--</div>-->
+
+                                                    <!--<a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>-->
+                                                    <!--<a class="next" onclick="plusSlides(1, 0)">&#10095;</a>-->
+                                                <!--</div>-->
+                                                <div class="sparkline8-list">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Post ID:</td>
+                                                            <td th:text="${p.post_ID}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tittle:</td>
+                                                            <td th:text="${p.title}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Poster:</td>
+                                                            <td th:text="${p.author.fullname}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Post Time:</td>
+                                                            <td th:text="${p.postTime}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price:</td>
+                                                            <td th:text="${p.price}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description:</td>
+                                                            <td th:text="${p.description}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Location:</td>
+                                                            <td th:text="${p.location}">post_id</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br/><br/>
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <span th:if="${p.details != null}">
+                                                            <tr>
+                                                            <td>Bedroom: </td>
+                                                            <td th:text="${p.details.bedroom}"></td>
+                                                            <td>Bathroom: </td>
+                                                            <td th:text="${p.details.bathroom}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Floor: </td>
+                                                            <td th:text="${p.details.floor}"></td>
+                                                            <td>Alley: </td>
+                                                            <td th:text="${p.details.alley}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Direction: </td>
+                                                            <td th:text="${p.details.direction.direction_Title}"></td>
+                                                            </tr>
+                                                        </span>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="btnBlock"  th:attr="data-id=${p.post_ID}"
+                                                            class="btn btn-custon-rounded-four btn-danger btnblock"
+                                                            data-toggle="modal">Block
+                                                    </button>
+                                                    <button type="button" data-dismiss="modal"
+                                                            class="btn btn-custon-rounded-four btn-default">Cancel
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout :: site-footer"/>
+<script type="text/javascript" th:inline="javascript">
+    var typeOfPost = [[${typeOfPost}]];
+    $(function () {
+        if (typeOfPost !== null) {
+            $("#typeOfPost").val(typeOfPost);
+        }
+    });
+
+    var typeOfRE = [[${typeOfRE}]];
+    $(function () {
+        if (typeOfRE !== null) {
+            $("#typeOfRE").val(typeOfRE);
+        }
+    });
+
+    var date = [[${date}]];
+    $(function () {
+        if (date !== null) {
+            $("#dateInput").val(date);
+            document.getElementById("dateInput").value = date;
+        } else {
+            var today = moment().format('YYYY-MM-DD');
+            document.getElementById("dateInput").value = today;
+        }
+    });
+
+
+
+
+    var details = '/Censor/Post/Details';
+    $(function () {
+        $(".btnSubmit").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: details,
+                contentType: "application/html; charset=utf-8",
+                data: {"post_ID": id, "type": "all"},
+                datatype: "html",
+                success: function (data) {
+                    $('#modal-content').html(data);
+                    $('#PrimaryModalalert').modal('show');
+                },
+                error: function () {
+                    alert("Error: Get details of this Post failed. Please try again!");
+                }
+            });
+        });
+    });
+
+    var blockURL = '/posts/block';
+    $(document).on('click', '.btnblock', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Block this Customer ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: blockURL,
+                contentType: "application/html; charset=utf-8",
+                data: {"post_id": id},
+                datatype: "html",
+                success: function (data) {
+                    if (data == 1) {
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
+                        $("#newPostTable").load(location.href + " #newPostTable>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Block POST successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Block POST failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'Block POST failed! Please try again.'
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

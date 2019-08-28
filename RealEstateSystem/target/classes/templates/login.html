@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>Title</title>
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet"/>
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}"/>
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/owl.carousel.css" th:href="@{/css/owl.carousel.css}"/>
+    <link rel="stylesheet" href="/static/css/owl.theme.css" th:href="@{/css/owl.theme.css}"/>
+    <link rel="stylesheet" href="/static/css/owl.transitions.css" th:href="@{/css/owl.transitions.css}"/>
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/animate.css" th:href="@{/css/animate.css}"/>
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+    <!-- morrisjs CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/morrisjs/morris.css" th:href="@{/css/morrisjs/morris.css}"/>
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/scrollbar/jquery.mCustomScrollbar.min.css"
+          th:href="@{/css/scrollbar/jquery.mCustomScrollbar.min.css}"/>
+    <!-- metisMenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu.min.css"
+          th:href="@{/css/metisMenu/metisMenu.min.css}"/>
+    <link rel="stylesheet" href="/static/css/metisMenu/metisMenu-vertical.css"
+          th:href="@{/css/metisMenu/metisMenu-vertical.css}"/>
+    <!-- calendar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.min.css"
+          th:href="@{/css/calendar/fullcalendar.min.css}"/>
+    <link rel="stylesheet" href="/static/css/calendar/fullcalendar.print.min.css"
+          th:href="@{/css/calendar/fullcalendar.print.min.css}"/>
+    <!-- forms CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/form/all-type-forms.css" th:href="@{/css/form/all-type-forms.css}"/>
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/style.css" th:href="@{/css/style.css}"/>
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="/static/css/responsive.css" th:href="@{/css/responsive.css}"/>
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="/static/js/vendor/modernizr-2.8.3.min.js" th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
+</head>
+<body>
+<div class="error-pagewrap">
+    <div class="error-page-int">
+        <div class="text-center m-b-md custom-login">
+            <h3>ADMIN LOGIN | REAL ESTATE</h3>
+            <p>Have a nice day!</p>
+        </div>
+        <!-- /login?errors=true -->
+        <div class="formError" th:if="${#httpServletRequest.getParameter('errors') == 'true'}">
+            Login Failed !!!<br/>
+            <span th:if="${#session != null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+                  th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+            </span>
+        </div>
+
+        <div class="content-error">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <form name='f' th:action="@{/j_spring_security_check}" method='POST'>
+                        <div class="form-group">
+                            <label class="control-label" for="username">Username</label>
+                            <input type="text" placeholder="username" title="Please enter you username" name="username"
+                                   id="username" class="form-control"/>
+                            <!--<span class="formError" th:if="${#fields.hasErrors('username')}">Invalid username</span>-->
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="password">Password</label>
+                            <input type="password" title="Please enter your password" placeholder="******"
+                                   name="password" id="password" class="form-control"/>
+                            <!--<span class="formError" th:if="${#fields.hasErrors('password')}">Invalid password</span>-->
+                        </div>
+                        <div class="checkbox">
+                            <label class="pad-l10">
+                                <input type="checkbox" name="remember-me"/> Remember me
+                            </label>
+                        </div>
+                        <input name="submit" type="submit" value="Login" class="btn btn-success btn-block loginbtn"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center login-footer">
+            <p>Copyright © 2018. All rights reserved. Design with <i class="fa fa-heart"></i> by <a
+                    href="https://www.facebook.com/thuydx.98" target="_blank">Thuy Dao Xuan</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- jquery
+       ============================================ -->
+<script src="/static/js/vendor/jquery-1.12.4.min.js" th:src="@{/js/vendor/jquery-1.12.4.min.js}"></script>
+<!-- bootstrap JS
+    ============================================ -->
+<script src="/static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- wow JS
+    ============================================ -->
+<script src="/static/js/wow.min.js" th:src="@{/js/wow.min.js}"></script>
+<!-- price-slider JS
+    ============================================ -->
+<script src="/static/js/jquery-price-slider.js" th:src="@{/js/jquery-price-slider.js}"></script>
+<!-- meanmenu JS
+    ============================================ -->
+<script src="/static/js/jquery.meanmenu.js" th:src="@{/js/jquery.meanmenu.js}"></script>
+<!-- owl.carousel JS
+    ============================================ -->
+<script src="/static/js/owl.carousel.min.js" th:src="@{/js/owl.carousel.min.js}"></script>
+<!-- sticky JS
+    ============================================ -->
+<script src="/static/js/jquery.sticky.js" th:src="@{/js/jquery.sticky.js}"></script>
+<!-- scrollUp JS
+    ============================================ -->
+<script src="/static/js/jquery.scrollUp.min.js" th:src="@{/js/jquery.scrollUp.min.js}"></script>
+<!-- mCustomScrollbar JS
+    ============================================ -->
+<script src="/static/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"
+        th:src="@{/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+<script src="/static/js/scrollbar/mCustomScrollbar-active.js"
+        th:src="@{/js/scrollbar/mCustomScrollbar-active.js}"></script>
+<!-- metisMenu JS
+    ============================================ -->
+<script src="/static/js/metisMenu/metisMenu.min.js" th:src="@{/js/metisMenu/metisMenu.min.js}"></script>
+<script src="/static/js/metisMenu/metisMenu-active.js" th:src="@{/js/metisMenu/metisMenu-active.js}"></script>
+<!-- tab JS
+    ============================================ -->
+<script src="/static/js/tab.js" th:src="@{/js/tab.js}"></script>
+<!-- icheck JS
+    ============================================ -->
+<script src="/static/js/icheck/icheck.min.js" th:src="@{/js/icheck/icheck.min.js}"></script>
+<script src="/static/js/icheck/icheck-active.js" th:src="@{/js/icheck/icheck-active.js}"></script>
+<!-- plugins JS
+    ============================================ -->
+<script src="/static/js/plugins.js" th:src="@{/js/plugins.js}"></script>
+<!-- main JS
+    ============================================ -->
+<script src="/static/js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+</html>

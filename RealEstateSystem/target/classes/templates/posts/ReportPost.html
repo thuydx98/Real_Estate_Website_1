@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8"/>
+    <link href="/static/css/modals.css" rel="stylesheet" th:href="@{/css/modals.css}"/>
+    <link href="/static/css/buttons.css" rel="stylesheet" th:href="@{/css/buttons.css}"/>
+    <link href="/static/css/slideshow.css" rel="stylesheet" th:href="@{/css/slideshow.css}"/>
+</head>
+<body>
+<header th:replace="layout :: site-header"/>
+<div class="breadcome-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcome-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcome-heading">
+                                <form role="search" class="sr-input-func">
+                                    <input type="text" placeholder="Search..." class="search-int form-control"/>
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <ul class="breadcome-menu">
+                                <li>
+                                    <a href="#">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li>
+                                    <span class="bread-blod">Reported Posts</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Static Table Start -->
+<div class="static-table-area all-content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="padding-bottom: 30px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline8-list">
+                    <div class="sparkline8-hd">
+                        <div class="main-sparkline8-hd">
+                            <h1>Reported Posts Table</h1>
+                        </div>
+                    </div>
+                    <div class="sparkline8-graph">
+                        <div class="static-table-list">
+                            <table class="table" id="ReportPostsTable">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Poster</th>
+                                    <th>Reporter</th>
+                                    <th>Report Time</th>
+                                    <th>Reason</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="p : ${lstReported}">
+                                    <td th:text="${p.post.post_ID}"></td>
+                                    <td th:text="${p.post.title}"></td>
+                                    <td th:text="${p.post.author.fullname}"></td>
+                                    <td th:text="${p.reporter.fullname}"></td>
+                                    <td th:text="${p.reportedTime}"></td>
+                                    <td th:text="${p.reason}"></td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-custon-rounded-three btn-primary btn-xs btnedit"
+                                                data-toggle="modal"
+                                                th:attr="data-target='#postModel'+${p.post.post_ID}">Details
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <span th:each="p : ${lstReported}">
+                                    <div th:attr="id='postModel'+${p.post.post_ID}"
+                                         class="PrimaryModalalert modal modal-edu-general default-popup-PrimaryModal fade"
+                                         role="dialog">
+                                        <div class="modal-dialog">
+                                            <div id="modal-content" class="modal-content">
+                                                <div class="modal-close-area modal-close-df">
+                                                    <a class="close" data-dismiss="modal" href="#"><i
+                                                            class="fa fa-close"></i></a>
+                                                </div>
+                                                <div class="sparkline8-list">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>Post ID:</td>
+                                                            <td th:text="${p.post.post_ID}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tittle:</td>
+                                                            <td th:text="${p.post.title}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Poster:</td>
+                                                            <td th:text="${p.post.author.fullname}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Post Time:</td>
+                                                            <td th:text="${p.post.postTime}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price:</td>
+                                                            <td th:text="${p.post.price}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Description:</td>
+                                                            <td th:text="${p.post.description}">post_id</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Location:</td>
+                                                            <td th:text="${p.post.location}">post_id</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <br/><br/>
+                                                    <table class="table">
+                                                        <tbody>
+                                                        <span th:if="${p.post.details != null}">
+                                                            <tr>
+                                                            <td>Bedroom: </td>
+                                                            <td th:text="${p.post.details.bedroom}"></td>
+                                                            <td>Bathroom: </td>
+                                                            <td th:text="${p.post.details.bathroom}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Floor: </td>
+                                                            <td th:text="${p.post.details.floor}"></td>
+                                                            <td>Alley: </td>
+                                                            <td th:text="${p.post.details.alley}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                            <td>Direction: </td>
+                                                            <td th:text="${p.post.details.direction.direction_Title}"></td>
+                                                            </tr>
+                                                        </span>
+                                                        </tbody>
+                                                    </table>
+                                                    <br/><br/>
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Reason reported: </td>
+                                                                <td th:text="${p.reporter.fullname}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Reported time: </td>
+                                                                <td th:text="${p.reportedTime}"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Reason: </td>
+                                                                <td th:text="${p.reason}"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">\
+                                                    <button type="button" th:attr="data-id=${p.report_ID}" class="btnConfirmBlockReport btn btn-custon-rounded-four btn-danger" data-toggle="modal">Block Post</button>
+                                                    <button type="button" class="btnDeleteReport btn btn-custon-rounded-four btn-primary" th:attr="data-id=${p.report_ID}" data-toggle="modal">Delete Report</button>
+                                                    <button type="button" data-dismiss="modal" class="btn btn-custon-rounded-four btn-default">Cancel</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout :: site-footer"/>
+
+<script type="text/javascript" th:inline="javascript">
+    var confirmBlockReportURL = '/posts/approveReport';
+    $(document).on('click', '.btnConfirmBlockReport', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Block this post ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: confirmBlockReportURL,
+                contentType: "application/html; charset=utf-8",
+                data: {"report_id": id},
+                datatype: "html",
+                success: function (data) {
+                    if (data == 1) {
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
+                        $("#ReportPostsTable").load(location.href + " #ReportPostsTable>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Block POST successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Block POST failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'Block POST failed! Please try again.'
+                    });
+                }
+            });
+        }
+    });
+
+    var deleteReport = '/posts/deleteReport';
+    $(document).on('click', '.btnDeleteReport', function () {
+        var $buttonClicked = $(this);
+        if (confirm("Delete this report ?")) {
+            var id = $buttonClicked.attr('data-id');
+            $.ajax({
+                type: "GET",
+                url: deleteReport,
+                contentType: "application/html; charset=utf-8",
+                data: {"report_id": id},
+                datatype: "html",
+                success: function (data) {
+                    if (data == 1) {
+                        $('.PrimaryModalalert').modal('hide');
+                        $('.modal-backdrop').hide();
+                        $("#ReportPostsTable").load(location.href + " #ReportPostsTable>*", "");
+                        Lobibox.notify('success', {
+                            msg: 'Delete REPORT successed!'
+                        });
+                    } else {
+                        Lobibox.notify('error', {
+                            msg: 'Delete REPORT failed! Please try again.'
+                        });
+                    }
+                },
+                error: function () {
+                    Lobibox.notify('error', {
+                        msg: 'Delete REPORT failed! Please try again.'
+                    });
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

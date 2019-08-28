@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: site-head">
+    <meta charset="utf-8" />
+</head>
+<body>
+<header th:replace="layout :: site-header" />
+
+<div class="all-content-wrapper">
+    <div class="header-advance-area">
+        <div class="analytics-sparkle-area breadcome-list">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs mg-b-10 res-mg-b-30 res-mg-t-30 table-mg-t-pro-n dk-res-t-d-n">
+                            <h3 class="box-title">Total Posts</h3>
+                            <ul class="list-inline two-part-sp">
+                                <li>
+                                    <div id="sparklinedash"></div>
+                                </li>
+                                <li class="text-right sp-cn-r"><span class="counter text-success" th:text="${totalPosts}">-1</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs mg-b-10 res-mg-b-30 dk-res-t-d-n">
+                            <h3 class="box-title">Total Blocked Posts</h3>
+                            <ul class="list-inline two-part-sp">
+                                <li>
+                                    <div id="sparklinedash2"></div>
+                                </li>
+                                <li class="text-right graph-two-ctn"><span class="counter text-purple" th:text="${totalBlockedPosts}">-1</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs mg-b-10 res-mg-b-30 dk-res-t-d-n">
+                            <h3 class="box-title">Total Employees</h3>
+                            <ul class="list-inline two-part-sp">
+                                <li>
+                                    <div id="sparklinedash3"></div>
+                                </li>
+                                <li class="text-right graph-three-ctn"><span class="counter text-info" th:text="${totalEmployees}">-1</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="white-box analytics-info-cs dk-res-t-d-n">
+                            <h3 class="box-title">Total Customers</h3>
+                            <ul class="list-inline two-part-sp">
+                                <li>
+                                    <div id="sparklinedash4"></div>
+                                </li>
+                                <li class="text-right graph-four-ctn">
+                                        <span class="text-danger"><span class="counter"  th:text="${totalCustomers}">-1</span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-sales-chart">
+                            <div class="portlet-title">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="caption pro-sl-hd">
+                                            <span class="caption-subject"><b>University Earnings</b></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="actions graph-rp graph-rp-dl">
+                                            <p>All Earnings are in million $</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="list-inline cus-product-sl-rp">
+                                <li>
+                                    <h5><i class="fa fa-circle" style="color: #006DF0;"></i>New Posts</h5>
+                                </li>
+                                <li>
+                                    <h5><i class="fa fa-circle" style="color: #933EC5;"></i>New Users</h5>
+                                </li>
+                            </ul>
+                            <div id="extra-area-chart" style="height: 356px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout :: site-footer" />
+
+<script type="text/javascript" th:inline="javascript">
+    Morris.Area({
+        element: 'extra-area-chart',
+        data: [{
+            period: [[${lstChartData[0].period}]],
+            newPosts: [[${lstChartData[0].value1}]],
+            newUsers: [[${lstChartData[0].value2}]],
+        }, {
+            period: [[${lstChartData[1].period}]],
+            newPosts: [[${lstChartData[1].value1}]],
+            newUsers: [[${lstChartData[1].value2}]],
+        }, {
+            period: [[${lstChartData[2].period}]],
+            newPosts: [[${lstChartData[2].value1}]],
+            newUsers: [[${lstChartData[2].value2}]],
+        }, {
+            period: [[${lstChartData[3].period}]],
+            newPosts: [[${lstChartData[3].value1}]],
+            newUsers: [[${lstChartData[3].value2}]],
+        }, {
+            period: [[${lstChartData[4].period}]],
+            newPosts: [[${lstChartData[4].value1}]],
+            newUsers: [[${lstChartData[4].value2}]],
+        }, {
+            period: [[${lstChartData[5].period}]],
+            newPosts: [[${lstChartData[5].value1}]],
+            newUsers: [[${lstChartData[5].value2}]],
+        }, {
+            period: [[${lstChartData[6].period}]],
+            newPosts: [[${lstChartData[6].value1}]],
+            newUsers: [[${lstChartData[6].value2}]],
+        }],
+        xkey: 'period',
+        ykeys: ['newPosts', 'newUsers'],
+        labels: ['New Posts', 'New Users'],
+        pointSize: 3,
+        fillOpacity: 0,
+        pointStrokeColors: ['#006DF0', '#933EC5'],
+        behaveLikeLine: true,
+        gridLineColor: '#e0e0e0',
+        lineWidth: 1,
+        hideHover: 'auto',
+        lineColors: ['#006DF0', '#933EC5'],
+        resize: true
+    });
+</script>
+
+</body>
+</html>

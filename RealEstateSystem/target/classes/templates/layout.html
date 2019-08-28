@@ -1,0 +1,240 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="site-header">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title th:include=":: #pageTitle">Real Estate System</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous"/>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon1.ico" th:href="@{/img/favicon1.ico}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link href="../static/css/owl.carousel.css" rel="stylesheet" th:href="@{/css/owl.carousel.css}"/>
+    <link href="../static/css/owl.theme.css" rel="stylesheet" th:href="@{/css/owl.theme.css}"/>
+    <link href="../static/css/owl.transitions.css" rel="stylesheet" th:href="@{/css/owl.transitions.css}"/>
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}"/>
+    <link rel="stylesheet" href="../static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+    <link rel="stylesheet" href="../static/css/meanmenu.min.css" th:href="@{/css/meanmenu.min.css}"/>
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" href="../static/css/educate-custon-icon.css" th:href="@{/css/educate-custon-icon.css}"/>
+    <link rel="stylesheet" href="../static/css/morrisjs/morris.css" th:href="@{/css/morrisjs/morris.css}"/>
+    <link rel="stylesheet" href="../static/css/scrollbar/jquery.mCustomScrollbar.min.css" th:href="@{/css/scrollbar/jquery.mCustomScrollbar.min.css}"/>
+    <link rel="stylesheet" href="../static/css/metisMenu/metisMenu.min.css" th:href="@{/css/metisMenu/metisMenu.min.css}"/>
+    <link rel="stylesheet" href="../static/css/metisMenu/metisMenu-vertical.css" th:href="@{/css/metisMenu/metisMenu-vertical.css}"/>
+    <link rel="stylesheet" href="../static/css/calendar/fullcalendar.min.css" th:href="@{/css/calendar/fullcalendar.min.css}"/>
+    <link rel="stylesheet" href="../static/css/calendar/fullcalendar.print.min.css" th:href="@{/css/calendar/fullcalendar.print.min.css}"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="../static/css/responsive.css" th:href="@{/css/responsive.css}"/>
+    <link href="../static/css/notifications/Lobibox.min.css" rel="stylesheet" th:href="@{/css/notifications/Lobibox.min.css}"/>
+    <link href="../static/css/notifications/notifications.css" rel="stylesheet" th:href="@{/css/notifications/notifications.css}"/>
+
+    <!-- jquery
+    ============================================ -->
+    <script src="../static/js/vendor/jquery-1.12.4.min.js" th:src="@{/js/vendor/jquery-1.12.4.min.js}"></script>
+    <script src="../static/js/vendor/modernizr-2.8.3.min.js" th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
+    <script src="../static/js/notifications/Lobibox.js" th:src="@{/js/notifications/Lobibox.js}"></script>
+    <script src="../static/js/morrisjs/raphael-min.js" th:src="@{/js/morrisjs/raphael-min.js}"></script>
+    <script src="../static/js/morrisjs/morris.js" th:src="@{/js/morrisjs/morris.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/wow.min.js" th:src="@{/js/wow.min.js}"></script>
+    <script src="../static/js/jquery-price-slider.js" th:src="@{/js/jquery-price-slider.js}"></script>
+    <script src="../static/js/jquery.meanmenu.js" th:src="@{/js/jquery.meanmenu.js}"></script>
+    <script src="../static/js/owl.carousel.min.js" th:src="@{/js/owl.carousel.min.js}"></script>
+    <script src="../static/js/jquery.sticky.js" th:src="@{/js/jquery.sticky.js}"></script>
+    <script src="../static/js/jquery.scrollUp.min.js" th:src="@{/js/jquery.scrollUp.min.js}"></script>
+    <script src="../static/js/scrollbar/jquery.mCustomScrollbar.concat.min.js" th:src="@{/js/scrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+    <script src="../static/js/scrollbar/mCustomScrollbar-active.js" th:src="@{/js/scrollbar/mCustomScrollbar-active.js}"></script>
+    <script src="../static/js/metisMenu/metisMenu.min.js" th:src="@{/js/metisMenu/metisMenu.min.js}"></script>
+    <script src="../static/js/metisMenu/metisMenu-active.js" th:src="@{/js/metisMenu/metisMenu-active.js}"></script>
+    <script src="../static/js/counterup/jquery.counterup.min.js" th:src="@{/js/counterup/jquery.counterup.min.js}"></script>
+    <script src="../static/js/counterup/waypoints.min.js" th:src="@{/js/counterup/waypoints.min.js}"></script>
+    <script src="../static/js/counterup/counterup-active.js" th:src="@{/js/counterup/counterup-active.js}"></script>
+    <script src="../static/js/sparkline/jquery.sparkline.min.js" th:src="@{/js/sparkline/jquery.sparkline.min.js}"></script>
+    <script src="../static/js/sparkline/jquery.charts-sparkline.js" th:src="@{/js/sparkline/jquery.charts-sparkline.js}"></script>
+    <script src="../static/js/sparkline/sparkline-active.js" th:src="@{/js/sparkline/sparkline-active.js}"></script>
+    <script src="../static/js/calendar/moment.min.js" th:src="@{/js/calendar/moment.min.js}"></script>
+    <script src="../static/js/calendar/fullcalendar.min.js" th:src="@{/js/calendar/fullcalendar.min.js}"></script>
+    <script src="../static/js/calendar/fullcalendar-active.js" th:src="@{/js/calendar/fullcalendar-active.js}"></script>
+    <script src="../static/js/plugins.js" th:src="@{/js/plugins.js}"></script>
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script src="../static/js/datepicker/jquery-ui.min.js" th:src="@{/js/datepicker/jquery-ui.min.js}"></script>
+    <script src="../static/js/datepicker/datepicker-active.js" th:src="@{/js/datepicker/datepicker-active.js}"></script>
+    <meta th:include="this :: head" th:remove="tag"/>
+</head>
+
+<body>
+
+<header th:fragment="site-header" th:remove="tag">
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header">
+                <a href="index.html" th:href="@{/}"><img class="main-logo" src="../static/img/logo/logo.png" th:src="@{/img/logo/logo.png}" alt=""/></a>
+                <strong><a href="index.html" th:href="@{/}"><img src="../static/img/logo/logosn.png" th:src="@{/img/logo/logosn.png}" alt=""/></a></strong>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+                        <li>
+                            <a title="Landing Page" href="index.html" th:href="@{/}" aria-expanded="false"><span
+                                    class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                                <span class="mini-click-non">Dashboard</span></a>
+                        </li>
+                        <li class="active">
+                            <a class="has-arrow" aria-expanded="false"><span
+                                    class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Posts</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Posts" href="posts" th:href="@{/posts}" ><span class="mini-sub-pro">All Posts</span></a></li>
+                                <li><a title="Pending Posts" href="posts/pending" th:href="@{/posts/pending}"><span class="mini-sub-pro">Pending Post</span></a>
+                                </li>
+                                <li><a title="Reported Posts" href="posts/reported" th:href="@{/posts/reported}"><span class="mini-sub-pro">Reported Posts</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a class="has-arrow" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Customers</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Customers" href="customers" th:href="@{/customers}"><span class="mini-sub-pro">All Customers</span></a></li>
+                                <li><a title="Add Customer" href="customers/create" th:href="@{/customers/create}"><span class="mini-sub-pro">Add Customer</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a class="has-arrow" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Employee</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Students" href="employees" th:href="@{/employees}"><span class="mini-sub-pro">All Employee</span></a></li>
+                                <li><a title="Add Students" href="employees/create" th:href="@{/employees/create}"><span class="mini-sub-pro">Add Employee</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="../static/img/logo/logo.png" th:src="@{/img/logo/logo.png}" alt=""/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse"
+                                                    class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                                                <i class="educate-icon educate-nav"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button"
+                                                       aria-expanded="false" class="nav-link dropdown-toggle">
+                                                        <img src="../static/img/product/pro4.jpg" th:src="@{/img/product/pro4.jpg}" alt=""/>
+                                                        <span class="admin-name">Admin    .</span><i class="fas fa-angle-down" style="padding-left: 1%"></i>
+                                                    </a>
+                                                    <ul role="menu"
+                                                        class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <!--<li>-->
+                                                            <!--<a ><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>-->
+                                                        <!--</li>-->
+                                                        <!--<li>-->
+                                                            <!--<a ><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>-->
+                                                        <!--</li>-->
+                                                        <li>
+                                                            <a href="index.html" th:href="@{/logout}"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul class="mobile-menu-nav">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li>
+                                            <a data-toggle="collapse" data-target="#demoevent">Posts <span
+                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                            <ul id="demoevent" class="collapse dropdown-header-top">
+                                                <li><a title="All Posts" href="posts" th:href="@{/posts}" ><span class="mini-sub-pro">All Posts</span></a></li>
+                                                <li><a title="Pending Posts" href="posts/pending" th:href="@{/posts/pending}"><span class="mini-sub-pro">Pending Post</span></a>
+                                                </li>
+                                                <li><a title="Reported Posts" href="posts/reported" th:href="@{/posts/reported}"><span class="mini-sub-pro">Reported Posts</span></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="collapse" data-target="#demopro" href="#">Customers<span
+                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                            <ul id="demopro" class="collapse dropdown-header-top">
+                                                <li><a title="All Customers" href="/customers" th:href="@{/customers}"><span class="mini-sub-pro">All Customers</span></a></li>
+                                                <li><a title="Reported Customers" href="customers/reported" th:href="@{/customers/reported}"><span class="mini-sub-pro">Reported Customers</span></a></li>
+                                                <li><a title="Add Customer" href="customers/create" th:href="@{/customers/create}"><span class="mini-sub-pro">Add Customer</span></a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a data-toggle="collapse" data-target="#democrou">Employee <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                            <ul id="democrou" class="collapse dropdown-header-top">
+                                                <li><a title="All Students" href="employees" th:href="@{/employees}"><span class="mini-sub-pro">All Employee</span></a></li>
+                                                <li><a title="Add Students" href="employees/create" th:href="@{employees/create}"><span class="mini-sub-pro">Add Employee</span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</header>
+
+<footer th:fragment="site-footer">
+    <div class="footer-copyright-area all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-copy-right">
+                        <p>HCMUTE © 2018. All rights reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
